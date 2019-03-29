@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
-source .env
-# AUTH0_DOMAIN="dev-9wgh3m41.auth0.com/" # Note trailing slash/
-# AUTH0_CLIENT_ID="YVKcd_XIIBnsFKVxGYywBI91LLvSGxDd"
-# AUTH0_CLIENT_SECRET="8IUitrjaXG4MdNBd5qXVs-gexouQYo6gF4HRBrsafnYr1SpoNMoGPyU1g-WqZbDC"
-
-# Assumes vault 1.1+ is in $PATH.
+# Assumes jq and vault 1.1+ is in $PATH.
 # Kills any running vault server.
 
-kill $(ps |grep 'vault server' |awk '{print $1}') 2>/dev/null
+kill $(ps ax |grep 'vault server' |awk '{print $1}') 2>/dev/null
 set -e
+source .env
+
+sleep 1
 vault server -dev -dev-root-token-id=myroot -log-level=debug > /tmp/vault.log 2>&1 &
 sleep 1
 export VAULT_TOKEN=myroot
