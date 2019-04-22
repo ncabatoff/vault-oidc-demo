@@ -43,7 +43,7 @@ Still in
 modify the field Allowed Callback URLs, adding
 
 ```
-http://localhost:8200/ui/vault/auth/oidc/oidc/callback
+http://localhost:8200/ui/vault/auth/oidc/oidc/callback,
 http://localhost:8250/oidc/callback
 ```
 
@@ -122,6 +122,7 @@ In Auth0:
 In Auth0:
 - -> Rules
 - Click `+CREATE YOUR FIRST RULE`
+- Choose the `empty rule` template
 - Call it "Set user roles", and use this rule definition:
 ```javascript
 function (user, context, callback) {
